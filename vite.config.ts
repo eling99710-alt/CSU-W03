@@ -7,5 +7,9 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    watch: {
+      ignored: ['**/PDF/**', '**/*.pdf', '**/.git/**'],
+    },
   },
 });
+
