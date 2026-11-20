@@ -8,7 +8,16 @@ export default defineConfig({
     port: 5173,
     host: true,
     watch: {
-      ignored: ['**/PDF/**', '**/*.pdf', '**/.git/**'],
+      ignored: [
+        '**/PDF/**',
+        '**/DOC/**',
+        '**/sample-data/**',
+        '**/dist/**',
+        '**/.git/**',
+        '**/*.pdf',
+        '**/*.csv',
+        '**/*.xlsx',
+      ],
     },
   },
 });
