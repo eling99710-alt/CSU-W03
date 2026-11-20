@@ -3,6 +3,7 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { LcMsCalibrationTool } from './tools/lc-ms-calibration/LcMsCalibrationTool';
+import { UnitsTool } from './tools/units/UnitsTool';
 import { TOOLS_REGISTRY, ToolMetadata } from './config/toolsRegistry';
 
 export const App: React.FC = () => {
@@ -50,6 +51,8 @@ export const App: React.FC = () => {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {!currentToolId ? (
           <HomePage onSelectTool={handleSelectTool} />
+        ) : currentToolId === 'units' ? (
+          <UnitsTool />
         ) : currentToolId === 'lc-ms-calibration' ? (
           <LcMsCalibrationTool />
         ) : (

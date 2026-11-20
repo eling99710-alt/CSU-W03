@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Beaker, Layers } from 'lucide-react';
+import { LineChart, Calculator, Layers, Beaker } from 'lucide-react';
 
 export type ToolCategory = 'all' | 'instrument' | 'prep' | 'qa-qc';
 
@@ -27,6 +27,16 @@ export const CATEGORIES: { id: ToolCategory; label: string; count?: number }[] =
  */
 export const TOOLS_REGISTRY: ToolMetadata[] = [
   {
+    id: 'units',
+    name: '稀釋與單位換算器',
+    category: 'prep',
+    description: '支援水樣（µg/L）、土壤（乾基 mg/kg）與食品批量數據換算，具備單位自動正規化、水分校正與髒資料防呆機制。',
+    icon: Calculator,
+    status: 'ready',
+    weekNumber: 2,
+    tags: ['單位換算', '序列稀釋', '土壤乾基', '水質微量分析', 'ICP-MS'],
+  },
+  {
     id: 'lc-ms-calibration',
     name: 'LC-MS 檢量線計算機',
     category: 'instrument',
@@ -43,7 +53,7 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
     description: '高濃度母液序列稀釋、儲備液多梯度配製、溶劑密度與純度（Assay%）補償換算。',
     icon: Beaker,
     status: 'coming-soon',
-    weekNumber: 2,
+    weekNumber: 3,
     tags: ['序列稀釋', '標準品配製', 'C1V1=C2V2', 'ppm/ppb換算'],
   },
   {
@@ -53,7 +63,7 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
     description: '批次空白 (Blank)、重複樣品 (Duplicate RPD)、查核樣品 (LCS 回收率) 自動判讀與統計報告產出。',
     icon: Layers,
     status: 'planned',
-    weekNumber: 3,
+    weekNumber: 4,
     tags: ['QA/QC', '批次彙整', '回收率', 'RPD', '水質檢驗標準法'],
   },
 ];
