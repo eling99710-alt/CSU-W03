@@ -4,18 +4,21 @@ import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { LcMsCalibrationTool } from './tools/lc-ms-calibration/LcMsCalibrationTool';
 import { UnitsTool } from './tools/units/UnitsTool';
+import { BatchMergerTool } from './tools/merge/BatchMergerTool';
 import { TOOLS_REGISTRY, ToolMetadata } from './config/toolsRegistry';
 
 export const App: React.FC = () => {
   const [currentToolId, setCurrentToolId] = useState<string | null>(() => {
-    // 支援直接透過 hash 進入工具，如 #lc-ms-calibration
-    const hash = window.location.hash.replace('#', '');
+    // 支援直接透過 hash 進入工具，如 #lc-ms-calibration、#units、#batch-summary
+    let hash = window.location.hash.replace('#', '');
+    if (hash === 'merge') hash = 'batch-summary';
     return hash && TOOLS_REGISTRY.some(t => t.id === hash) ? hash : null;
   });
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
+      let hash = window.location.hash.replace('#', '');
+      if (hash === 'merge') hash = 'batch-summary';
       if (hash && TOOLS_REGISTRY.some(t => t.id === hash)) {
         setCurrentToolId(hash);
       } else {
@@ -53,6 +56,8 @@ export const App: React.FC = () => {
           <HomePage onSelectTool={handleSelectTool} />
         ) : currentToolId === 'units' ? (
           <UnitsTool />
+        ) : currentToolId === 'batch-summary' || currentToolId === 'merge' ? (
+          <BatchMergerTool />
         ) : currentToolId === 'lc-ms-calibration' ? (
           <LcMsCalibrationTool />
         ) : (
